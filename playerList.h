@@ -5,7 +5,7 @@
 
 using namespace std;
 
-struct Node 
+struct Node
 {
 	player p;
 	Node* next, * prev;
@@ -13,9 +13,9 @@ struct Node
 
 class playerList
 {
-	Node *head, *tail;
-public: 
-	playerList():head(NULL), tail(NULL) {};
+	Node* head, * tail;
+public:
+	playerList() :head(NULL), tail(NULL) {};
 
 	void addPlayer(player pl)
 	{
@@ -23,16 +23,16 @@ public:
 		temp->next = NULL;
 		temp->p = pl;
 
-		if (head != NULL)                    
+		if (head != NULL)
 		{
-			temp->prev = tail;               
-			tail->next = temp;               
-			tail = temp;                     
+			temp->prev = tail;
+			tail->next = temp;
+			tail = temp;
 		}
-		else 
+		else
 		{
-			temp->prev = NULL;              
-			head = tail = temp;              
+			temp->prev = NULL;
+			head = tail = temp;
 		}
 	}
 
@@ -47,7 +47,6 @@ public:
 		}
 	}
 
-
 	void createFile(string fileName)
 	{
 		ofstream dBase(fileName);
@@ -61,4 +60,3 @@ public:
 		dBase.close();
 	}
 };
-

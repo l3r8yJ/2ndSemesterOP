@@ -36,14 +36,14 @@ player createPlayer()
 	return thisPlayer;
 }
 
-
 int main()
 {
 	bool processLive = true;
 
 	playerList dinamoList;
 	playerList spartakList;
-	
+	playerList bothTeamList;
+
 	while (processLive)
 	{
 	mainMenu:
@@ -54,8 +54,9 @@ int main()
 		cout << "1. Add player to team. " << endl;
 		cout << "2. Show list of players. " << endl;
 		cout << "3. Create file with players. " << endl;
-		cout << "4. Exit..." << endl;
-		
+		cout << "4. Create file with best players from both teams. " << endl;
+		cout << "5. Exit..." << endl;
+
 		int choose;
 		cin >> choose;
 
@@ -70,21 +71,25 @@ int main()
 			cout << "1. Dinamo. " << endl;
 			cout << "2. Spartak. " << endl;
 			cout << "3. Back..." << endl;
-			
+
 			int pickOne;
 			cin >> pickOne;
-			
+
 			if (pickOne == 1)
 			{
-				dinamoList.addPlayer(createPlayer());
+				player dinamoPlayer = createPlayer();
+				dinamoList.addPlayer(dinamoPlayer);
+				bothTeamList.addPlayer(dinamoPlayer);
 				goto pickPointOne;
 			}
 
 			if (pickOne == 2)
 			{
-				spartakList.addPlayer(createPlayer());
+				player spartakPlayer = createPlayer();
+				spartakList.addPlayer(spartakPlayer);
+				bothTeamList.addPlayer(spartakPlayer);
 				goto pickPointOne;
-			}		
+			}
 
 			if (pickOne == 3)
 			{
@@ -116,7 +121,7 @@ int main()
 				spartakList.showList();
 				system("pause");
 				goto pickPointTwo;
-			}		
+			}
 
 			if (pickTwo == 3)
 			{
@@ -156,7 +161,12 @@ int main()
 			}
 
 		case 4:
-		
+			//sort
+			bothTeamList.createFile("bestplayersDB.txt");
+			system("pause");
+			goto mainMenu;
+		case 5:
+
 			processLive = false;
 			break;
 

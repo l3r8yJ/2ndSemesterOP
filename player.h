@@ -3,7 +3,7 @@
 
 using namespace std;
 
-class player 
+class player
 {
 private:
 	string name, team;
