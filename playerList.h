@@ -45,17 +45,29 @@ public:
 
 	void sort()
 	{
-		Node* temp = new Node;
-		temp = head;
-		while (temp->next != NULL)
-		{
-			if (temp->player.getEfficiency() < temp->next->player.getEfficiency());
-			{
-				player tempPlayer = temp->player;
-				temp->player = temp->next->player;
-				temp->next->player = tempPlayer;
-			}
 
+		if (getSize() <= 0)
+		{
+			cout << "There's no players..." << endl;
+			return;
+		}
+
+		Node* curr;
+		Node* temp;
+		temp = head;
+		while (temp != NULL)
+		{
+			curr = head;
+			while (curr->next != NULL)
+			{
+				if (curr->player.getEfficiency() < curr->next->player.getEfficiency());
+				{
+					player tempPlayer = curr->player;
+					curr->player = curr->next->player;
+					curr->next->player = tempPlayer;
+				}
+				curr = curr->next;
+			}
 			temp = temp->next;
 		}
 	}
