@@ -1,0 +1,6 @@
+Player's name: dpl2, team: Dinamo, goals: 4, asists: 0, penalty time: 1 mins.
+Player's name: dpl3, team: Dinamo, goals: 0, asists: 0, penalty time: 4 mins.
+Player's name: spl1, team: , goals: 3, asists: 0, penalty time: 0 mins.
+Player's name: spl2, team: , goals: 1, asists: 0, penalty time: 4 mins.
+Player's name: spl3, team: , goals: 2, asists: 0, penalty time: 1 mins.
+Player's name: dpl1, team: Dinamo, goals: 1, asists: 0, penalty time: 0 mins.

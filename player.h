@@ -42,12 +42,12 @@ public:
 		return numOfGoals;
 	}
 
-	void setNumOfGoalAssists(int n)
+	void setNumOfGoalAsists(int n)
 	{
-		n = numOfGoalAssists;
+		numOfGoalAssists = n;
 	}
 
-	int getNumOfGoalAssists()
+	int getNumOfGoalAsists()
 	{
 		return numOfGoalAssists;
 	}
@@ -64,6 +64,6 @@ public:
 
 	int getEfficiency()
 	{
-		return getNumOfGoals() + getNumOfGoalAssists();
+		return numOfGoals + numOfGoalAssists;
 	}
 };

@@ -46,18 +46,16 @@ public:
 	void sort()
 	{
 		Node* temp = new Node;
+		temp = head;
 		while (temp->next != NULL)
 		{
-			while (temp->prev != NULL)
-			{ 
-				if (temp->player.getEfficiency() < temp->next->player.getEfficiency());
-				{
-					player tempPlayer = temp->player;
-					temp->player = temp->next->player;
-					temp->next->player = tempPlayer;
-				}
-				temp = temp->prev;
-			}	
+			if (temp->player.getEfficiency() < temp->next->player.getEfficiency());
+			{
+				player tempPlayer = temp->player;
+				temp->player = temp->next->player;
+				temp->next->player = tempPlayer;
+			}
+
 			temp = temp->next;
 		}
 	}
@@ -68,7 +66,7 @@ public:
 
 		while (temp != NULL)
 		{
-			cout << "Player's name: " << temp->player.getName() << ", team: " << temp->player.getTeam() << ", goals: " << temp->player.getNumOfGoals() << ", asists: " << temp->player.getNumOfGoalAssists() << ", penalty time: " << temp->player.getPenaltyTime() << " mins." << endl;			// add all fields of player later <- here
+			cout << "Player's name: " << temp->player.getName() << ", team: " << temp->player.getTeam() << ", goals: " << temp->player.getNumOfGoals() << ", asists: " << temp->player.getNumOfGoalAsists() << ", penalty time: " << temp->player.getPenaltyTime() << " mins." << endl;			// add all fields of player later <- here
 			temp = temp->next;
 		}
 	}
@@ -80,7 +78,7 @@ public:
 
 		while (temp != NULL)
 		{
-			dBase << "Player's name: " << temp->player.getName() << ", team: " << temp->player.getTeam() << ", goals: " << temp->player.getNumOfGoals() << ", asists: " << temp->player.getNumOfGoalAssists() << ", penalty time: " << temp->player.getPenaltyTime() << " mins." << endl;			// add all fields of player later <- here
+			dBase << "Player's name: " << temp->player.getName() << ", team: " << temp->player.getTeam() << ", goals: " << temp->player.getNumOfGoals() << ", asists: " << temp->player.getNumOfGoalAsists() << ", penalty time: " << temp->player.getPenaltyTime() << " mins." << endl;			// add all fields of player later <- here
 			temp = temp->next;
 		}
 		dBase.close();
