@@ -16,7 +16,7 @@ class playerList
 	Node* head, * tail;
 	int size = 0;
 public:
-	playerList() :head(NULL), tail(NULL) {};
+	playerList() : head(NULL), tail(NULL) {};
 
 	int getSize()
 	{
@@ -43,7 +43,7 @@ public:
 		size++;
 	}
 
-	void sort()
+	void sortPlayerList()
 	{
 
 		if (getSize() <= 0)
@@ -53,16 +53,17 @@ public:
 		}
 
 		Node* curr;
-		Node* temp;
-		temp = head;
+		Node* temp = head;
+		player tempPlayer;
+
 		while (temp != NULL)
 		{
 			curr = head;
 			while (curr->next != NULL)
 			{
-				if (curr->player.getEfficiency() < curr->next->player.getEfficiency());
+				if (curr->player.getEfficiency() < curr->next->player.getEfficiency())
 				{
-					player tempPlayer = curr->player;
+					tempPlayer = curr->player;
 					curr->player = curr->next->player;
 					curr->next->player = tempPlayer;
 				}

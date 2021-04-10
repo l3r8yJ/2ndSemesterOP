@@ -46,6 +46,7 @@ asistPoint:
 	if (asist < 0)
 	{
 		cout << "Wrong value! " << endl;
+		asist = NULL;
 		goto asistPoint;
 	}
 
@@ -210,12 +211,13 @@ int main()
 
 		case 4:
 
-			bothTeamList.sort();
+			bothTeamList.sortPlayerList();
 			bothTeamList.createFile("bestplayersDB.txt");
 			system("pause");
 			goto mainMenu;
 
 		case 5:
+
 			processLive = false;
 			break;
 
