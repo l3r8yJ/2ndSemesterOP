@@ -14,8 +14,14 @@ struct Node
 class playerList
 {
 	Node* head, * tail;
+	int size = 0;
 public:
 	playerList() :head(NULL), tail(NULL) {};
+
+	int getSize()
+	{
+		return size;
+	}
 
 	void addPlayer(player pl)
 	{
@@ -34,6 +40,7 @@ public:
 			temp->prev = NULL;
 			head = tail = temp;
 		}
+		size++;
 	}
 
 	void showList()
@@ -42,7 +49,7 @@ public:
 
 		while (temp != NULL)
 		{
-			cout << "Player's name: " << temp->p.getName() << ", team: " << temp->p.getTeam() << ", number of goals: " << temp->p.getNumOfGoals() << ", number of asists: " << temp->p.getNumOfGoalAssists() << ", penalty time: " << temp->p.getPenaltyTime() << " mins." << endl;			// add all fields of player later <- here
+			cout << "Player's name: " << temp->p.getName() << ", team: " << temp->p.getTeam() << ", goals: " << temp->p.getNumOfGoals() << ", asists: " << temp->p.getNumOfGoalAssists() << ", penalty time: " << temp->p.getPenaltyTime() << " mins." << endl;			// add all fields of player later <- here
 			temp = temp->next;
 		}
 	}
@@ -54,7 +61,7 @@ public:
 
 		while (temp != NULL)
 		{
-			dBase << "Player's name: " << temp->p.getName() << ", team: " << temp->p.getTeam() << ", number of goals: " << temp->p.getNumOfGoals() << ", number of asists: " << temp->p.getNumOfGoalAssists() << ", penalty time: " << temp->p.getPenaltyTime() << " mins." << endl;			// add all fields of player later <- here
+			dBase << "Player's name: " << temp->p.getName() << ", team: " << temp->p.getTeam() << ", goals: " << temp->p.getNumOfGoals() << ", asists: " << temp->p.getNumOfGoalAssists() << ", penalty time: " << temp->p.getPenaltyTime() << " mins." << endl;			// add all fields of player later <- here
 			temp = temp->next;
 		}
 		dBase.close();

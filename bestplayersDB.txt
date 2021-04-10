@@ -1,2 +1,0 @@
-Player's name: Snuser, team: Dinamo, number of goals: 1488, number of asists: 0, penalty time: 0 mins.
-Player's name: Sueta, team: Spartak, number of goals: 1247, number of asists: 0, penalty time: 1337 mins.

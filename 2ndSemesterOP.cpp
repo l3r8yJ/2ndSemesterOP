@@ -6,7 +6,7 @@
 
 using namespace std;
 
-player createPlayer()
+player createPlayer(int pickOne)
 {
 	player thisPlayer;
 
@@ -16,17 +16,48 @@ player createPlayer()
 	cout << "Enter the name of player: " << endl;
 	cin >> name;
 
-	cout << "Enter the player's team: " << endl;
-	cin >> team;
+	if (pickOne == 1)
+	{
+		team = "Dinamo";
+	}
+	else if(pickOne == 2)
+	{
+		team == "Spartak";
+	}
+	else
+	{
+		team = "\0";
+	}
 
+goalPoint:
 	cout << "Enter the number of goals that player did: " << endl;
 	cin >> goal;
 
+	if (goal < 0)
+	{
+		cout << "Wrong value! " << endl;
+		goto goalPoint;
+	}
+
+asistPoint:
 	cout << "Enter the number of asists that player did: " << endl;
 	cin >> asist;
 
+	if (asist < 0)
+	{
+		cout << "Wrong value! " << endl;
+		goto asistPoint;
+	}
+
+penaltyPoint:
 	cout << "Enter player's penalty time: " << endl;
 	cin >> penalty;
+
+	if (penalty < 0)
+	{
+		cout << "Wrong value! " << endl;
+		goto penaltyPoint;
+	}
 
 	thisPlayer.setName(name);
 	thisPlayer.setTeam(team);
@@ -77,7 +108,7 @@ int main()
 
 			if (pickOne == 1)
 			{
-				player dinamoPlayer = createPlayer();
+				player dinamoPlayer = createPlayer(pickOne);
 				dinamoList.addPlayer(dinamoPlayer);
 				bothTeamList.addPlayer(dinamoPlayer);
 				goto pickPointOne;
@@ -85,7 +116,7 @@ int main()
 
 			if (pickOne == 2)
 			{
-				player spartakPlayer = createPlayer();
+				player spartakPlayer = createPlayer(pickOne);
 				spartakList.addPlayer(spartakPlayer);
 				bothTeamList.addPlayer(spartakPlayer);
 				goto pickPointOne;
@@ -111,6 +142,14 @@ int main()
 
 			if (pickTwo == 1)
 			{
+
+				if (dinamoList.getSize() == 0)
+				{
+					cout << "There's no players in team..." << endl;
+					system("pause");
+					goto pickPointTwo;
+				}
+
 				dinamoList.showList();
 				system("pause");
 				goto pickPointTwo;
@@ -118,6 +157,14 @@ int main()
 
 			if (pickTwo == 2)
 			{
+
+				if (spartakList.getSize() == 0)
+				{
+					cout << "There's no players in team..." << endl;
+					system("pause");
+					goto pickPointTwo;
+				}
+
 				spartakList.showList();
 				system("pause");
 				goto pickPointTwo;
@@ -165,8 +212,8 @@ int main()
 			bothTeamList.createFile("bestplayersDB.txt");
 			system("pause");
 			goto mainMenu;
-		case 5:
 
+		case 5:
 			processLive = false;
 			break;
 
