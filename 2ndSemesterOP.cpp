@@ -208,7 +208,8 @@ int main()
 			}
 
 		case 4:
-			//sort
+
+			bothTeamList.sort();
 			bothTeamList.createFile("bestplayersDB.txt");
 			system("pause");
 			goto mainMenu;

@@ -61,4 +61,9 @@ public:
 	{
 		return penaltyTime;
 	}
+
+	int getEfficiency()
+	{
+		return getNumOfGoals() + getNumOfGoalAssists();
+	}
 };
