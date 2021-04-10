@@ -212,7 +212,7 @@ int main()
 		case 4:
 
 			bothTeamList.sortPlayerList();
-			bothTeamList.createFile("bestplayersDB.txt");
+			bothTeamList.createFileWithSixBestPlayers("bestplayersDB.txt");
 			system("pause");
 			goto mainMenu;
 

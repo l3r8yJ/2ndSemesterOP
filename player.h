@@ -8,7 +8,6 @@ class player
 private:
 	string name, team;
 	int numOfGoals, numOfGoalAssists, penaltyTime;
-	int efficiency = numOfGoals + numOfGoalAssists;
 public:
 
 	player* next;
@@ -61,10 +60,5 @@ public:
 	int getPenaltyTime()
 	{
 		return penaltyTime;
-	}
-
-	int getEfficiency()
-	{
-		return efficiency;
 	}
 };

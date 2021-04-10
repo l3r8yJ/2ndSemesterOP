@@ -61,7 +61,7 @@ public:
 			curr = head;
 			while (curr->next != NULL)
 			{
-				if (curr->player.getEfficiency() < curr->next->player.getEfficiency())
+				if (curr->player.getNumOfGoals() + curr->player.getNumOfGoalAsists() < curr->next->player.getNumOfGoals() + curr->next->player.getNumOfGoalAsists())
 				{
 					tempPlayer = curr->player;
 					curr->player = curr->next->player;
@@ -93,6 +93,31 @@ public:
 		{
 			dBase << "Player's name: " << temp->player.getName() << ", team: " << temp->player.getTeam() << ", goals: " << temp->player.getNumOfGoals() << ", asists: " << temp->player.getNumOfGoalAsists() << ", penalty time: " << temp->player.getPenaltyTime() << " mins." << endl;			// add all fields of player later <- here
 			temp = temp->next;
+		}
+		dBase.close();
+	}
+
+	void createFileWithSixBestPlayers(string fileName)
+	{
+
+		if (getSize() <= 0)
+		{
+			cout << "There's no players..." << endl;
+			return;
+		}
+
+		ofstream dBase(fileName);
+		Node* temp = head;
+
+		int stopper = 0;
+
+		dBase << "TOP 6 PLAYERS: " << endl;
+
+		while (temp != NULL && stopper < 6)
+		{
+			dBase << "Player's name: " << temp->player.getName() << ", team: " << temp->player.getTeam() << ", goals: " << temp->player.getNumOfGoals() << ", asists: " << temp->player.getNumOfGoalAsists() << ", penalty time: " << temp->player.getPenaltyTime() << " mins." << endl;			// add all fields of player later <- here
+			temp = temp->next;
+			stopper++;
 		}
 		dBase.close();
 	}
