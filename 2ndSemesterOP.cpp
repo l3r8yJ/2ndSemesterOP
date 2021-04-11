@@ -93,7 +93,7 @@ penaltyPoint:
 	thisPlayer.setName(name);
 	thisPlayer.setTeam(team);
 	thisPlayer.setNumOfGoals(goal);
-	thisPlayer.setNumOfGoalAsists(asist);
+	thisPlayer.setNumOfGoalAssists(asist);
 	thisPlayer.setPenaltyTime(penalty);
 
 	return thisPlayer;

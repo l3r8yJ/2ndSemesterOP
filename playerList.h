@@ -63,7 +63,7 @@ public:
 			curr = head;
 			while (curr->next != NULL)
 			{
-				if (curr->player.getNumOfGoals() + curr->player.getNumOfGoalAsists() < curr->next->player.getNumOfGoals() + curr->next->player.getNumOfGoalAsists())
+				if (curr->player.getNumOfGoals() + curr->player.getNumOfGoalAssists() < curr->next->player.getNumOfGoals() + curr->next->player.getNumOfGoalAssists())
 				{
 					tempPlayer = curr->player;
 					curr->player = curr->next->player;
@@ -79,14 +79,14 @@ public:
 	{
 		Node* temp = head;
 
-		cout << "+---------------------+-----------------+-------+--------+--------------+" << endl;
-		cout << "|         Name        |      Team       | goals | asists | penalty time |" << endl;
-		cout << "+---------------------+-----------------+-------+--------+--------------+" << endl;
+		cout << "+---------------------+-----------------+-------+---------+--------------+" << endl;
+		cout << "|         Name        |      Team       | goals | assists | penalty time |" << endl;
+		cout << "+---------------------+-----------------+-------+---------+--------------+" << endl;
 
 		while (temp != NULL)
 		{
-			cout << "| " << setw(19) << temp->player.getName() << " |" << setw(17) << temp->player.getTeam() << "| " << setw(6) << temp->player.getNumOfGoals() << "|" << setw(8) << temp->player.getNumOfGoalAsists() << "|" << setw(14) << temp->player.getPenaltyTime() << "|" << endl;			// add all fields of player later <- here
-			cout << "+---------------------+-----------------+-------+--------+--------------+" << endl;
+			cout << "| " << setw(19) << temp->player.getName() << " |" << setw(17) << temp->player.getTeam() << "| " << setw(6) << temp->player.getNumOfGoals() << "|" << setw(9) << temp->player.getNumOfGoalAssists() << "|" << setw(14) << temp->player.getPenaltyTime() << "|" << endl;			// add all fields of player later <- here
+			cout << "+---------------------+-----------------+-------+---------+--------------+" << endl;
 			temp = temp->next;
 		}
 	}
@@ -105,7 +105,7 @@ public:
 
 		while (temp != NULL)
 		{
-			dBase << "Player's name: " << temp->player.getName() << ", team: " << temp->player.getTeam() << ", goals: " << temp->player.getNumOfGoals() << ", asists: " << temp->player.getNumOfGoalAsists() << ", penalty time: " << temp->player.getPenaltyTime() << " mins." << endl;			// add all fields of player later <- here
+			dBase << "Player's name: " << temp->player.getName() << ", team: " << temp->player.getTeam() << ", goals: " << temp->player.getNumOfGoals() << ", asists: " << temp->player.getNumOfGoalAssists() << ", penalty time: " << temp->player.getPenaltyTime() << " mins." << endl;			// add all fields of player later <- here
 			temp = temp->next;
 		}
 		dBase.close();
@@ -129,7 +129,7 @@ public:
 
 		while (temp != NULL && stopper < 6)
 		{
-			dBase << "Player's name: " << temp->player.getName() << ", team: " << temp->player.getTeam() << ", goals: " << temp->player.getNumOfGoals() << ", asists: " << temp->player.getNumOfGoalAsists() << ", penalty time: " << temp->player.getPenaltyTime() << " mins." << endl;			// add all fields of player later <- here
+			dBase << "Player's name: " << temp->player.getName() << ", team: " << temp->player.getTeam() << ", goals: " << temp->player.getNumOfGoals() << ", asists: " << temp->player.getNumOfGoalAssists() << ", penalty time: " << temp->player.getPenaltyTime() << " mins." << endl;			// add all fields of player later <- here
 			temp = temp->next;
 			stopper++;
 		}
