@@ -3,66 +3,29 @@
 #include <fstream>
 #include "player.h"
 #include "playerList.h"
+#include "Helper.h"
 
 using namespace std;
-
-int getValuePick()
-{
-valuePick:
-
-	int value;
-
-	cin >> value;
-	
-	if (cin.fail())
-	{
-		cout << "Incorrect input, try again please..." << endl;
-		cin.clear();
-		cin.ignore(32767, '\n');
-		system("pause");
-		goto valuePick;
-	}
-
-	switch (value)
-	{
-	case 1: return value;
-	case 2: return value;
-	case 3: return value;
-	default:
-		cout << "Incorrect input, try again please..." << endl;
-		system("pause"); 
-		goto valuePick;
-		break;
-	}
-
-	return value;
-}
-
-int getValueMainMenu()
-{
-	int value;
-	cin >> value;
-
-	if (cin.fail() || value < 1 || value > 5)
-	{
-		cout << "Incorrect input, try again please..." << endl;
-		cin.clear();
-		cin.ignore(32767, '\n');
-	}
-
-	return value;
-}
 
 player createPlayer(int pickOne)
 {
 	player thisPlayer;
 
 	string name, team;
-	int goal, asist, penalty;
+	int goal, assist, penalty;
 
+namePoint:
 	cout << "Enter the name of player: " << endl;
 	cout << "> ";
 	cin >> name;
+
+	name[0] = toupper(name[0]);
+
+	if (haveNumber(name))
+	{
+		cout << "Name can't contain numbers, enter name again please." << endl;
+		goto namePoint;
+	}
 
 	if (pickOne == 1)
 	{
@@ -80,7 +43,8 @@ player createPlayer(int pickOne)
 goalPoint:
 	cout << "Enter the number of goals that player did: " << endl;
 	cout << "> ";
-	cin >> goal;
+
+	goal = getParameter();
 
 	if (goal < 0)
 	{
@@ -91,19 +55,19 @@ goalPoint:
 asistPoint:
 	cout << "Enter the number of asists that player did: " << endl;
 	cout << "> ";
-	cin >> asist;
+	assist = getParameter();
 
-	if (asist < 0)
+	if (assist < 0)
 	{
 		cout << "Wrong value! " << endl;
-		asist = NULL;
+		assist = NULL;
 		goto asistPoint;
 	}
 
 penaltyPoint:
 	cout << "Enter player's penalty time: " << endl;
 	cout << "> ";
-	cin >> penalty;
+	penalty = getParameter();
 
 	if (penalty < 0)
 	{
@@ -114,7 +78,7 @@ penaltyPoint:
 	thisPlayer.setName(name);
 	thisPlayer.setTeam(team);
 	thisPlayer.setNumOfGoals(goal);
-	thisPlayer.setNumOfGoalAssists(asist);
+	thisPlayer.setNumOfGoalAssists(assist);
 	thisPlayer.setPenaltyTime(penalty);
 
 	return thisPlayer;

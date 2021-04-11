@@ -32,9 +32,8 @@
     <ClInclude Include="playerList.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="Debug\database\dinamoDB.txt" />
-    <Text Include="Debug\database\spartakDB.txt" />
+    <ClInclude Include="Helper.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
