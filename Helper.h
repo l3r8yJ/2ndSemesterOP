@@ -95,6 +95,8 @@ valuePick:
 		cout << "> ";
 		goto valuePick;
 	}
+
+	return value;
 }
 
 int getParameter() // функция для проверки параметров голов, пассов, и штрафного времени
