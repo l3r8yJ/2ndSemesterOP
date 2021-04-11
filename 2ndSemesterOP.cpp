@@ -44,6 +44,7 @@ player createPlayer(int pickOne)
 	int goal, asist, penalty;
 
 	cout << "Enter the name of player: " << endl;
+	cout << "> ";
 	cin >> name;
 
 	if (pickOne == 1)
@@ -61,6 +62,7 @@ player createPlayer(int pickOne)
 
 goalPoint:
 	cout << "Enter the number of goals that player did: " << endl;
+	cout << "> ";
 	cin >> goal;
 
 	if (goal < 0)
@@ -71,6 +73,7 @@ goalPoint:
 
 asistPoint:
 	cout << "Enter the number of asists that player did: " << endl;
+	cout << "> ";
 	cin >> asist;
 
 	if (asist < 0)
@@ -82,6 +85,7 @@ asistPoint:
 
 penaltyPoint:
 	cout << "Enter player's penalty time: " << endl;
+	cout << "> ";
 	cin >> penalty;
 
 	if (penalty < 0)
@@ -121,6 +125,7 @@ int main()
 		cout << "3. Create file with players. " << endl;
 		cout << "4. Create file with best players from both teams. " << endl;
 		cout << "5. Exit..." << endl;
+		cout << "> ";
 
 		choose = getValueMainMenu();
 
@@ -135,6 +140,7 @@ int main()
 			cout << "1. Dinamo. " << endl;
 			cout << "2. Spartak. " << endl;
 			cout << "3. Back..." << endl;
+			cout << "> ";
 
 			pickOne = getValuePick();
 
@@ -168,6 +174,7 @@ int main()
 			cout << "1. Dinamo. " << endl;
 			cout << "2. Spartak. " << endl;
 			cout << "3. Back..." << endl;
+			cout << "> ";
 
 			pickTwo = getValuePick();
 
@@ -215,6 +222,7 @@ int main()
 			cout << "1. Dinamo. " << endl;
 			cout << "2. Spartak. " << endl;
 			cout << "3. Back..." << endl;
+			cout << "> ";
 
 			pickThree = getValuePick();
 
