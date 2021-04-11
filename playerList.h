@@ -26,7 +26,7 @@ public:
 		return size;
 	}
 
-	void addPlayer(player pl)	// функция добавления игрока 
+	void addPlayer(player pl)	// функция добавления игрока
 	{
 		Node* temp = new Node;
 		temp->next = NULL;
@@ -46,7 +46,7 @@ public:
 		size++;
 	}
 
-	void sortEfficiency()	// функция для сортировки по эффективности сумма голов и голевых пасов 
+	void sortEfficiency()	// функция для сортировки по эффективности сумма голов и голевых пасов
 	{
 		if (getSize() <= 0)
 		{

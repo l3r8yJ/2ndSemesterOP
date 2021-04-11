@@ -2,19 +2,18 @@
 
 #include <iostream>
 #include <string>
-#include <fstream>							// библиотека для работы с потоками и файлами в следствии 
+#include <fstream>							// библиотека для работы с потоками и файлами в следствии
 #include "player.h"
 #include "playerList.h"
 #include "Helper.h"
 
 using namespace std;
 
-
 int main()
 {												// инициализация переменных необходимых для работы меню
 	bool processLive = true;					// переменная для условия работы главного меню
 								//2 списка команд и 1 общий, для создания подборки лучших игроков
-	playerList dinamoList;						
+	playerList dinamoList;
 	playerList spartakList;
 	playerList bothTeamList;
 
@@ -36,9 +35,8 @@ int main()
 
 		choose = getValueMainMenu();
 
-		switch (choose)
+		if (choose == 1) //пункт меню для добавления игрока
 		{
-		case 1:											//пункт меню для добавления игрока
 		pickPointOne:
 
 			system("cls");
@@ -53,7 +51,8 @@ int main()
 
 			if (pickOne == 1)										//добавление игрока в команду динамо
 			{
-				player dinamoPlayer = createPlayer(pickOne);
+				player dinamoPlayer;
+				dinamoPlayer.fillPlayer(pickOne);
 				dinamoList.addPlayer(dinamoPlayer);
 				bothTeamList.addPlayer(dinamoPlayer);
 				goto pickPointOne;
@@ -61,7 +60,8 @@ int main()
 
 			if (pickOne == 2)										//добавление игрока в команду спартак
 			{
-				player spartakPlayer = createPlayer(pickOne);
+				player spartakPlayer;
+				spartakPlayer.fillPlayer(pickOne);
 				spartakList.addPlayer(spartakPlayer);
 				bothTeamList.addPlayer(spartakPlayer);
 				goto pickPointOne;
@@ -71,9 +71,11 @@ int main()
 			{
 				goto mainMenu;
 			}
+		}
 
-		case 2:														//пункт меню для просмотра БД 
-		pickPointTwo:	
+		else if (choose == 2)										//пункт меню для просмотра БД
+		{
+		pickPointTwo:
 
 			system("cls");
 
@@ -117,8 +119,10 @@ int main()
 			{
 				goto mainMenu;
 			}
+		}
 
-		case 3:																	//пункт меню для создания файла с игроками
+		else if (choose == 3)										//пункт меню для создания файла с игроками
+		{
 		pickPointThree:
 
 			system("cls");
@@ -149,9 +153,10 @@ int main()
 			{
 				goto mainMenu;
 			}
+		}
 
-		case 4:															//пункт для создания файла с лучшими игроками
-
+		else if (choose == 4)										//пункт для создания файла с лучшими игроками
+		{
 			if (bothTeamList.getSize() < 6)
 			{
 				cout << "Number of players is not enough!" << endl;
@@ -163,13 +168,15 @@ int main()
 			bothTeamList.createFileWithSixBestPlayers("bestplayersDB.txt");
 			system("pause");
 			goto mainMenu;
+		}
 
-		case 5:															//пункт выхода из программы
-
+		else if (choose == 5)										//пункт выхода из программы
+		{
 			processLive = false;
-			break;
+		}
 
-		default:														//при некорректном вводе
+		else                                                        //при некорректном вводе
+		{
 			goto mainMenu;
 		}
 	}
