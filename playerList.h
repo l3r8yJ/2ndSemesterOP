@@ -1,3 +1,5 @@
+//файл с двусвязным списком
+
 #pragma once
 #include "player.h"
 #include <iostream>
@@ -19,12 +21,12 @@ class playerList
 	int size = 0;
 public:
 
-	int getSize()
+	int getSize()	// функция для получения размера списка
 	{
 		return size;
 	}
 
-	void addPlayer(player pl)
+	void addPlayer(player pl)	// функция добавления игрока 
 	{
 		Node* temp = new Node;
 		temp->next = NULL;
@@ -44,7 +46,7 @@ public:
 		size++;
 	}
 
-	void sortEfficiency()
+	void sortEfficiency()	// функция для сортировки по эффективности сумма голов и голевых пасов 
 	{
 		if (getSize() <= 0)
 		{
@@ -73,7 +75,7 @@ public:
 		}
 	}
 
-	void showList()
+	void showList()	// функция вывода БД игроков в консоль
 	{
 		Node* temp = head;
 
@@ -89,7 +91,7 @@ public:
 		}
 	}
 
-	void createFile(string fileName)
+	void createFile(string fileName) // функция для создания файла отдельной команды
 	{
 		if (getSize() <= 0)
 		{
@@ -108,7 +110,7 @@ public:
 		dBase.close();
 	}
 
-	void createFileWithSixBestPlayers(string fileName)
+	void createFileWithSixBestPlayers(string fileName)	// функция для создания файла с 6 лучшими игроками из обеих команд
 	{
 		if (getSize() <= 0)
 		{

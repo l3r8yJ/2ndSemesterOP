@@ -1,98 +1,24 @@
-﻿#include <iostream>
+﻿//основной исполняемый файл
+
+#include <iostream>
 #include <string>
-#include <fstream>
+#include <fstream>							// библиотека для работы с потоками и файлами в следствии 
 #include "player.h"
 #include "playerList.h"
 #include "Helper.h"
 
 using namespace std;
 
-player createPlayer(int pickOne)
-{
-	player thisPlayer;
-
-	string name, team;
-	int goal, assist, penalty;
-
-namePoint:
-	cout << "Enter the name of player: " << endl;
-	cout << "> ";
-	cin >> name;
-
-	name[0] = toupper(name[0]);
-
-	if (haveNumber(name))
-	{
-		cout << "Name can't contain numbers, enter name again please." << endl;
-		goto namePoint;
-	}
-
-	if (pickOne == 1)
-	{
-		team = "Dinamo";
-	}
-	else if (pickOne == 2)
-	{
-		team = "Spartak";
-	}
-	else
-	{
-		team = "\0";
-	}
-
-goalPoint:
-	cout << "Enter the number of goals that player did: " << endl;
-	cout << "> ";
-
-	goal = getParameter();
-
-	if (goal < 0)
-	{
-		cout << "Wrong value! " << endl;
-		goto goalPoint;
-	}
-
-asistPoint:
-	cout << "Enter the number of asists that player did: " << endl;
-	cout << "> ";
-	assist = getParameter();
-
-	if (assist < 0)
-	{
-		cout << "Wrong value! " << endl;
-		assist = NULL;
-		goto asistPoint;
-	}
-
-penaltyPoint:
-	cout << "Enter player's penalty time: " << endl;
-	cout << "> ";
-	penalty = getParameter();
-
-	if (penalty < 0)
-	{
-		cout << "Wrong value! " << endl;
-		goto penaltyPoint;
-	}
-
-	thisPlayer.setName(name);
-	thisPlayer.setTeam(team);
-	thisPlayer.setNumOfGoals(goal);
-	thisPlayer.setNumOfGoalAssists(assist);
-	thisPlayer.setPenaltyTime(penalty);
-
-	return thisPlayer;
-}
 
 int main()
-{
-	bool processLive = true;
-
-	playerList dinamoList;
+{												// инициализация переменных необходимых для работы меню
+	bool processLive = true;					// переменная для условия работы главного меню
+								//2 списка команд и 1 общий, для создания подборки лучших игроков
+	playerList dinamoList;						
 	playerList spartakList;
 	playerList bothTeamList;
 
-	int pickOne, pickTwo, pickThree, choose;
+	int pickOne, pickTwo, pickThree, choose;		//перменные выбора для координации в меню
 
 	while (processLive)
 	{
@@ -112,7 +38,7 @@ int main()
 
 		switch (choose)
 		{
-		case 1:
+		case 1:											//пункт меню для создания игрока
 		pickPointOne:
 
 			system("cls");
@@ -125,7 +51,7 @@ int main()
 
 			pickOne = getValuePick();
 
-			if (pickOne == 1)
+			if (pickOne == 1)										//добавление игрока в команду динамо
 			{
 				player dinamoPlayer = createPlayer(pickOne);
 				dinamoList.addPlayer(dinamoPlayer);
@@ -133,7 +59,7 @@ int main()
 				goto pickPointOne;
 			}
 
-			if (pickOne == 2)
+			if (pickOne == 2)										//добавление игрока в команду спартак
 			{
 				player spartakPlayer = createPlayer(pickOne);
 				spartakList.addPlayer(spartakPlayer);
@@ -141,13 +67,13 @@ int main()
 				goto pickPointOne;
 			}
 
-			if (pickOne == 3)
+			if (pickOne == 3)										//выход в главное меню
 			{
 				goto mainMenu;
 			}
 
-		case 2:
-		pickPointTwo:
+		case 2:														//пункт меню для просмотра БД 
+		pickPointTwo:	
 
 			system("cls");
 
@@ -161,7 +87,7 @@ int main()
 
 			if (pickTwo == 1)
 			{
-				if (dinamoList.getSize() == 0)
+				if (dinamoList.getSize() == 0)									//небольшая проверка на наличие игроков в бд
 				{
 					cout << "There's no players in team..." << endl;
 					system("pause");
@@ -175,7 +101,7 @@ int main()
 
 			if (pickTwo == 2)
 			{
-				if (spartakList.getSize() == 0)
+				if (spartakList.getSize() == 0)									//небольшая проверка на наличие игроков в бд
 				{
 					cout << "There's no players in team..." << endl;
 					system("pause");
@@ -192,7 +118,7 @@ int main()
 				goto mainMenu;
 			}
 
-		case 3:
+		case 3:																	//пункт меню для создания файла с игроками
 		pickPointThree:
 
 			system("cls");
@@ -224,28 +150,26 @@ int main()
 				goto mainMenu;
 			}
 
-		case 4:
+		case 4:															//пункт для создания файла с лучшими игроками
 
-			if (bothTeamList.getSize() > 0 && bothTeamList.getSize() >= 6)
-			{
-				bothTeamList.sortEfficiency();
-				bothTeamList.createFileWithSixBestPlayers("bestplayersDB.txt");
-				system("pause");
-				goto mainMenu;
-			}
-			else if (bothTeamList.getSize() < 6)
+			if (bothTeamList.getSize() < 6)
 			{
 				cout << "Number of players is not enough!" << endl;
 				system("pause");
 				goto mainMenu;
 			}
 
-		case 5:
+			bothTeamList.sortEfficiency();
+			bothTeamList.createFileWithSixBestPlayers("bestplayersDB.txt");
+			system("pause");
+			goto mainMenu;
+
+		case 5:															//пункт выхода из программы
 
 			processLive = false;
 			break;
 
-		default:
+		default:														//при некорректном вводе
 			goto mainMenu;
 		}
 	}

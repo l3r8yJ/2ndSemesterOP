@@ -1,3 +1,5 @@
+// класс игрока
+
 #pragma once
 #include <string>
 
@@ -5,10 +7,9 @@ using namespace std;
 
 class player
 {
-private:
-	string name, team;
+	string name, team;									// поля 
 	int numOfGoals, numOfGoalAssists, penaltyTime;
-public:
+public:													//сеттеры геттеры, конструктор не использовал 
 
 	void setTeam(string t)
 	{

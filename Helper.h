@@ -1,7 +1,8 @@
+//Файл для отдельного хранения функций помощников, в основном для проверки корректности ввода.
+
 #pragma once
 
-
-bool haveNumber(string line)
+bool haveNumber(string line) //проверка на наличие цифр в имени
 {
 	int i = 0;
 
@@ -17,7 +18,7 @@ bool haveNumber(string line)
 	return false;
 }
 
-int getParameter()
+int getParameter() // функция для проверки параметров голов, пассов, и штрафного времени
 {
 valuePick:
 	int value;
@@ -35,7 +36,7 @@ valuePick:
 	return value;
 }
 
-int getValuePick()
+int getValuePick() // функция корректности ввода для выбора команды в пунктах меню под номерами 1, 2 ,3
 {
 valuePick:
 
@@ -65,7 +66,7 @@ valuePick:
 	return value;
 }
 
-int getValueMainMenu()
+int getValueMainMenu()	// функция для проверки корректности ввода в главном меню
 {
 	int value;
 	cin >> value;
@@ -78,4 +79,81 @@ int getValueMainMenu()
 	}
 
 	return value;
+}
+
+player createPlayer(int pickOne)		// функция создания игрока, принимает интовую переменную чтобы определиться с командой автоматически
+{
+	player thisPlayer;
+
+	string name, team;
+	int goal, assist, penalty;
+
+namePoint:
+	cout << "Enter the name of player: " << endl;
+	cout << "> ";
+	cin >> name;
+
+	name[0] = toupper(name[0]);										// поднятие первой буквы в верхний регистр, если пользователь ввел некорректно 
+
+	if (haveNumber(name))
+	{
+		cout << "Name can't contain numbers, enter name again please." << endl;
+		goto namePoint;
+	}
+
+	if (pickOne == 1)										// определение команды
+	{
+		team = "Dinamo";
+	}
+	else if (pickOne == 2)
+	{
+		team = "Spartak";
+	}
+	else
+	{
+		team = "\0";
+	}
+
+goalPoint:																// заполнение переменных
+	cout << "Enter the number of goals that player did: " << endl;
+	cout << "> ";
+
+	goal = getParameter();
+
+	if (goal < 0)
+	{
+		cout << "Wrong value! " << endl;
+		goto goalPoint;
+	}
+
+asistPoint:
+	cout << "Enter the number of asists that player did: " << endl;
+	cout << "> ";
+	assist = getParameter();
+
+	if (assist < 0)
+	{
+		cout << "Wrong value! " << endl;
+		assist = NULL;
+		goto asistPoint;
+	}
+
+penaltyPoint:
+	cout << "Enter player's penalty time: " << endl;
+	cout << "> ";
+	penalty = getParameter();
+
+	if (penalty < 0)
+	{
+		cout << "Wrong value! " << endl;
+		goto penaltyPoint;
+	}
+															//создание экземпляра
+	thisPlayer.setName(name);
+	thisPlayer.setTeam(team);
+	thisPlayer.setNumOfGoals(goal);
+	thisPlayer.setNumOfGoalAssists(assist);
+	thisPlayer.setPenaltyTime(penalty);
+
+	return thisPlayer;
 }
