@@ -6,6 +6,36 @@
 
 using namespace std;
 
+int getValuePick()
+{
+	int value;
+	cin >> value;
+
+	if (cin.fail() || value < 1 || value > 3)
+	{
+		cout << "Incorrect input, try again please..." << endl;
+		cin.clear();
+		cin.ignore(32767, '\n');
+	}
+
+	return value;
+}
+
+int getValueMainMenu()
+{
+	int value;
+	cin >> value;
+
+	if (cin.fail() || value < 1 || value > 5)
+	{
+		cout << "Incorrect input, try again please..." << endl;
+		cin.clear();
+		cin.ignore(32767, '\n');
+	}
+
+	return value;
+}
+
 player createPlayer(int pickOne)
 {
 	player thisPlayer;
@@ -77,6 +107,8 @@ int main()
 	playerList spartakList;
 	playerList bothTeamList;
 
+	int pickOne, pickTwo, pickThree, choose;
+
 	while (processLive)
 	{
 	mainMenu:
@@ -90,8 +122,7 @@ int main()
 		cout << "4. Create file with best players from both teams. " << endl;
 		cout << "5. Exit..." << endl;
 
-		int choose;
-		cin >> choose;
+		choose = getValueMainMenu();
 
 		switch (choose)
 		{
@@ -105,8 +136,7 @@ int main()
 			cout << "2. Spartak. " << endl;
 			cout << "3. Back..." << endl;
 
-			int pickOne;
-			cin >> pickOne;
+			pickOne = getValuePick();
 
 			if (pickOne == 1)
 			{
@@ -139,8 +169,7 @@ int main()
 			cout << "2. Spartak. " << endl;
 			cout << "3. Back..." << endl;
 
-			int pickTwo;
-			cin >> pickTwo;
+			pickTwo = getValuePick();
 
 			if (pickTwo == 1)
 			{
@@ -187,8 +216,7 @@ int main()
 			cout << "2. Spartak. " << endl;
 			cout << "3. Back..." << endl;
 
-			int pickThree;
-			cin >> pickThree;
+			pickThree = getValuePick();
 
 			if (pickThree == 1)
 			{
@@ -210,19 +238,28 @@ int main()
 			}
 
 		case 4:
-
-			bothTeamList.sortPlayerList();
-			bothTeamList.createFileWithSixBestPlayers("bestplayersDB.txt");
-			system("pause");
-			goto mainMenu;
-
+			
+			if (bothTeamList.getSize() > 0 && bothTeamList.getSize() >= 6)
+			{
+				bothTeamList.sortEfficiency();
+				bothTeamList.createFileWithSixBestPlayers("bestplayersDB.txt");
+				system("pause");
+				goto mainMenu;
+			}
+			else if (bothTeamList.getSize() < 6)
+			{
+				cout << "Number of players is not enough!" << endl;
+				system("pause");
+				goto mainMenu;
+			}
+			
 		case 5:
 
 			processLive = false;
 			break;
 
 		default:
-			break;
+			goto mainMenu;
 		}
 	}
 

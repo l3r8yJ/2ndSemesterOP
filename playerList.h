@@ -2,6 +2,8 @@
 #include "player.h"
 #include <iostream>
 #include <fstream>
+#include <string>
+#include <iomanip>
 
 using namespace std;
 
@@ -43,7 +45,7 @@ public:
 		size++;
 	}
 
-	void sortPlayerList()
+	void sortEfficiency()
 	{
 
 		if (getSize() <= 0)
@@ -77,15 +79,27 @@ public:
 	{
 		Node* temp = head;
 
+		cout << "+---------------------+-----------------+-------+--------+--------------+" << endl;
+		cout << "|         Name        |      Team       | goals | asists | penalty time |" << endl;
+		cout << "+---------------------+-----------------+-------+--------+--------------+" << endl;
+
 		while (temp != NULL)
 		{
-			cout << "Player's name: " << temp->player.getName() << ", team: " << temp->player.getTeam() << ", goals: " << temp->player.getNumOfGoals() << ", asists: " << temp->player.getNumOfGoalAsists() << ", penalty time: " << temp->player.getPenaltyTime() << " mins." << endl;			// add all fields of player later <- here
+			cout << "| " << setw(19) << temp->player.getName() << " |" << setw(17) << temp->player.getTeam() << "| " << setw(6) << temp->player.getNumOfGoals() << "|" << setw(8) << temp->player.getNumOfGoalAsists() << "|" << setw(14) << temp->player.getPenaltyTime() << "|" << endl;			// add all fields of player later <- here
+			cout << "+---------------------+-----------------+-------+--------+--------------+" << endl;
 			temp = temp->next;
 		}
 	}
 
 	void createFile(string fileName)
 	{
+
+		if (getSize() <= 0)
+		{
+			cout << "There's no players..." << endl;
+			return;
+		}
+
 		ofstream dBase(fileName);
 		Node* temp = head;
 
