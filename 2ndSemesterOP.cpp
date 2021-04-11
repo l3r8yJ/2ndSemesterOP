@@ -8,14 +8,31 @@ using namespace std;
 
 int getValuePick()
 {
-	int value;
-	cin >> value;
+valuePick:
 
-	if (cin.fail() || value < 1 || value > 3)
+	int value;
+
+	cin >> value;
+	
+	if (cin.fail())
 	{
 		cout << "Incorrect input, try again please..." << endl;
 		cin.clear();
 		cin.ignore(32767, '\n');
+		system("pause");
+		goto valuePick;
+	}
+
+	switch (value)
+	{
+	case 1: return value;
+	case 2: return value;
+	case 3: return value;
+	default:
+		cout << "Incorrect input, try again please..." << endl;
+		system("pause"); 
+		goto valuePick;
+		break;
 	}
 
 	return value;
