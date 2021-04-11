@@ -10,8 +10,6 @@ private:
 	int numOfGoals, numOfGoalAssists, penaltyTime;
 public:
 
-	player* next;
-
 	void setTeam(string t)
 	{
 		team = t;

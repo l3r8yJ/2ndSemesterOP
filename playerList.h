@@ -18,7 +18,6 @@ class playerList
 	Node* head, * tail;
 	int size = 0;
 public:
-	playerList() : head(NULL), tail(NULL) {};
 
 	int getSize()
 	{
