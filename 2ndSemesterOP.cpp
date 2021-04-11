@@ -53,7 +53,7 @@ player createPlayer(int pickOne)
 	}
 	else if (pickOne == 2)
 	{
-		team == "Spartak";
+		team = "Spartak";
 	}
 	else
 	{
