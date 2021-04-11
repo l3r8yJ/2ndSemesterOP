@@ -47,7 +47,6 @@ public:
 
 	void sortEfficiency()
 	{
-
 		if (getSize() <= 0)
 		{
 			cout << "There's no players..." << endl;
@@ -79,21 +78,20 @@ public:
 	{
 		Node* temp = head;
 
-		cout << "+---------------------+-----------------+-------+---------+--------------+" << endl;
-		cout << "|         Name        |      Team       | goals | assists | penalty time |" << endl;
-		cout << "+---------------------+-----------------+-------+---------+--------------+" << endl;
+		cout << "+---------------------+-----------------+-------+----------+--------------+" << endl;
+		cout << "|         Name        |      Team       | goals | assists  | penalty time |" << endl;
+		cout << "+---------------------+-----------------+-------+----------+--------------+" << endl;
 
 		while (temp != NULL)
 		{
-			cout << "| " << setw(19) << temp->player.getName() << " |" << setw(17) << temp->player.getTeam() << "| " << setw(6) << temp->player.getNumOfGoals() << "|" << setw(9) << temp->player.getNumOfGoalAssists() << "|" << setw(14) << temp->player.getPenaltyTime() << "|" << endl;			// add all fields of player later <- here
-			cout << "+---------------------+-----------------+-------+---------+--------------+" << endl;
+			cout << "| " << setw(19) << temp->player.getName() << " |" << setw(17) << temp->player.getTeam() << "| " << setw(6) << temp->player.getNumOfGoals() << "|" << setw(10) << temp->player.getNumOfGoalAssists() << "|" << setw(14) << temp->player.getPenaltyTime() << "|" << endl;			// add all fields of player later <- here
+			cout << "+---------------------+-----------------+-------+----------+--------------+" << endl;
 			temp = temp->next;
 		}
 	}
 
 	void createFile(string fileName)
 	{
-
 		if (getSize() <= 0)
 		{
 			cout << "There's no players..." << endl;
@@ -113,7 +111,6 @@ public:
 
 	void createFileWithSixBestPlayers(string fileName)
 	{
-
 		if (getSize() <= 0)
 		{
 			cout << "There's no players..." << endl;
