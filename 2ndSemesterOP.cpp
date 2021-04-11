@@ -38,7 +38,7 @@ int main()
 
 		switch (choose)
 		{
-		case 1:											//пункт меню для создания игрока
+		case 1:											//пункт меню для добавления игрока
 		pickPointOne:
 
 			system("cls");

@@ -4,32 +4,119 @@
 
 bool haveNumber(string line) //проверка на наличие цифр в имени
 {
-	int i = 0;
-
 	for (int i = 0; i < line.length(); i++)
 	{
 		if (line[i] >= '0' && line[i] <= '9')
 		{
+			cout << "Have number!";
 			return true;
 		}
-		i++;
 	}
 
 	return false;
 }
 
+bool haveSpaces(string line)	// проверка на наличие пробелов в имени
+{
+	for (int i = 0; i < line.length(); i++)
+	{
+		if (line[i] == ' ')
+		{
+			cout << "Have space!";
+			return true;
+		}
+	}
+
+	return false;
+}
+
+bool haveIncorrectSize(string line)		// проверка на длину имени 
+{
+	if (line.length() < 3)
+	{
+		cout << "Have length lower then 3!";
+		return true;
+	}
+	return false;
+}
+
+bool haveIncorrectChar(string line)					//проверка на содержание некорректных символов по типу %, !, и тд
+{
+	for (int i = 0; i < line.length(); i++)
+	{
+		if (line[i] == '!' || line[i] == '@' || line[i] == '#' || line[i] == '$' || line[i] == '%' || line[i] == '^' || line[i] == '&' || line[i] == '*' || line[i] == '(' || line[i] == ')' || line[i] == ':' || line[i] == '?' || line[i] == '"' || line[i] == '_' || line[i] == '-' || line[i] == '+' || line[i] == '[' || line[i] == ']' || line[i] == '{' || line[i] == '}' || line[i] == ',' || line[i] == '.' || line[i] == '<' || line[i] == '>' || line[i] == '~' || line[i] == '`' || line[i] == '|' || line[i] == '/')
+		{
+			cout << "Have incorrect character -> " << line[i];
+			return true;
+		}
+	}
+	return false;
+}
+
+bool isCorrectFinal(string line)
+{
+	if (haveSpaces(line))
+	{
+		return false;
+	}
+
+	else if (haveNumber(line))
+	{
+		return false;
+	}
+
+	else if (haveIncorrectSize(line))
+	{
+		return false;
+	}
+
+	else if (haveIncorrectChar(line))
+	{
+		return false;
+	}
+	
+	return true;
+}
+
+string getNameParameter()
+{
+	string value;
+	bool correct = true;
+
+valuePick:
+
+	cin >> value;
+
+	value[0] = toupper(value[0]);										// подн€тие первой буквы в верхний регистр, если пользователь ввел некорректно 
+
+	if (isCorrectFinal(value) != correct)										// полна€ проверка имени
+	{
+		cout << " Try again." << endl;
+		cout << "> ";
+		goto valuePick;
+	}
+}
+
 int getParameter() // функци€ дл€ проверки параметров голов, пассов, и штрафного времени
 {
 valuePick:
-	int value;
 
+	int value;
 	cin >> value;
 
 	if (cin.fail())
 	{
 		cout << "Incorrect input, try again please..." << endl;
+		cout << "> ";
 		cin.clear();
 		cin.ignore(32767, '\n');
+		goto valuePick;
+	}
+
+	if (value < 0)
+	{
+		cout << "Wrong value! " << endl;
+		cout << "> ";
 		goto valuePick;
 	}
 
@@ -47,6 +134,7 @@ valuePick:
 	if (cin.fail())
 	{
 		cout << "Incorrect input, try again please..." << endl;
+		cout << "> ";
 		cin.clear();
 		cin.ignore(32767, '\n');
 		goto valuePick;
@@ -59,10 +147,13 @@ valuePick:
 	case 3: return value;
 	default:
 		cout << "Incorrect input, try again please..." << endl;
+		cout << "> ";
 		goto valuePick;
 		break;
 	}
 
+	cin.clear();
+	cin.ignore(32767, '\n');
 	return value;
 }
 
@@ -74,6 +165,7 @@ int getValueMainMenu()	// функци€ дл€ проверки корректности ввода в главном меню
 	if (cin.fail() || value < 1 || value > 5)
 	{
 		cout << "Incorrect input, try again please..." << endl;
+		cout << "> ";
 		cin.clear();
 		cin.ignore(32767, '\n');
 	}
@@ -81,27 +173,12 @@ int getValueMainMenu()	// функци€ дл€ проверки корректности ввода в главном меню
 	return value;
 }
 
-player createPlayer(int pickOne)		// функци€ создани€ игрока, принимает интовую переменную чтобы определитьс€ с командой автоматически
+
+string autoTeam(int pickOne)               // определение команды
 {
-	player thisPlayer;
+	string team;
 
-	string name, team;
-	int goal, assist, penalty;
-
-namePoint:
-	cout << "Enter the name of player: " << endl;
-	cout << "> ";
-	cin >> name;
-
-	name[0] = toupper(name[0]);										// подн€тие первой буквы в верхний регистр, если пользователь ввел некорректно 
-
-	if (haveNumber(name))
-	{
-		cout << "Name can't contain numbers, enter name again please." << endl;
-		goto namePoint;
-	}
-
-	if (pickOne == 1)										// определение команды
+	if (pickOne == 1)										
 	{
 		team = "Dinamo";
 	}
@@ -114,43 +191,34 @@ namePoint:
 		team = "\0";
 	}
 
-goalPoint:																// заполнение переменных
+	return team;
+}
+
+
+player createPlayer(int pickOne)		// функци€ создани€ игрока, принимает интовую переменную чтобы определитьс€ с командой автоматически
+{
+	player thisPlayer;
+	string name;
+	int goal, assist, penalty;
+
+	cout << "Enter the name of player: " << endl;
+	cout << "> ";
+	name = getNameParameter();
+																				// заполнение переменных
 	cout << "Enter the number of goals that player did: " << endl;
 	cout << "> ";
-
 	goal = getParameter();
 
-	if (goal < 0)
-	{
-		cout << "Wrong value! " << endl;
-		goto goalPoint;
-	}
-
-asistPoint:
 	cout << "Enter the number of asists that player did: " << endl;
 	cout << "> ";
 	assist = getParameter();
 
-	if (assist < 0)
-	{
-		cout << "Wrong value! " << endl;
-		assist = NULL;
-		goto asistPoint;
-	}
-
-penaltyPoint:
 	cout << "Enter player's penalty time: " << endl;
 	cout << "> ";
 	penalty = getParameter();
-
-	if (penalty < 0)
-	{
-		cout << "Wrong value! " << endl;
-		goto penaltyPoint;
-	}
 															//создание экземпл€ра
 	thisPlayer.setName(name);
-	thisPlayer.setTeam(team);
+	thisPlayer.setTeam(autoTeam(pickOne));
 	thisPlayer.setNumOfGoals(goal);
 	thisPlayer.setNumOfGoalAssists(assist);
 	thisPlayer.setPenaltyTime(penalty);
